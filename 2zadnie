@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <vector>
+
+using namespace std;
+class StringManipulator{
+    public: 
+    static string reverseWords (const string& input){
+        istringstream iss(input);
+        vector<string>words;
+        string word;
+        while (iss >> word) {
+            words.push_back(word);
+        }
+        string result;
+        for(auto it = words.rbegin(); it !=words.rend(); ++it){
+            result += *it;
+            if(it +1 !=words.rend()){
+                result +=" ";
+            }
+        }
+        return result;
+    }
+};
+int main (){
+    string text;
+    cout<< "Введи текст;";
+    getline(cin,text);
+    
+     string result =  StringManipulator::reverseWords(text);
+     cout <<"Результаты:" << result <<endl;
+     
+     return 0;
+ }
