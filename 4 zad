@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+#include <set>
+#include <algorithm>
+
+class StringComparator {
+public:
+    static bool areEqual(const std::string& str1, const std::string& str2) {
+        std::set<char> set1 = getUniqueCharacters(str1);
+        std::set<char> set2 = getUniqueCharacters(str2);
+        
+        return set1 == set2;
+    }
+
+private:
+    static std::set<char> getUniqueCharacters(const std::string& str) {
+        std::set<char> uniqueChars;
+        for (char ch : str) {
+            
+            if (std::isalpha(ch)) {
+                uniqueChars.insert(std::tolower(ch)); 
+            }
+        }
+        return uniqueChars;
+    }
+};
+
+int main() {
+    std::string str1, str2;
+
+    std::cout << "Введите первую строку: ";
+    std::getline(std::cin, str1);
+    std::cout << "Введите вторую строку: ";
+    std::getline(std::cin, str2);
+
+    if (StringComparator::areEqual(str1, str2)) {
+        std::cout << "Строки равны по набору букв." << std::endl;
+    } else {
+        std::cout << "Строки не равны по набору букв." << std::endl;
+    }
+
+    return 0;
+}
