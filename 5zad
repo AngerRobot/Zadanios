@@ -1,0 +1,45 @@
+#include <iostream>
+#include <vector>
+
+class CharacterFinder {
+public:
+    static std::vector<int> findCharacterPositions(const std::string& text, char character) {
+        std::vector<int> positions;
+        
+        for (size_t i = 0; i < text.length(); ++i) {
+            if (text[i] == character) {
+                positions.push_back(i);
+            }
+        }
+
+        if (positions.empty()) {
+            positions.push_back(-1);
+        }
+
+        return positions;
+    }
+};
+
+int main() {
+    std::string text;
+    char character;
+
+    std::cout << "Введите текст: ";
+    std::getline(std::cin, text);
+    std::cout << "Введите символ для поиска: ";
+    std::cin >> character;
+
+    std::vector<int> positions = CharacterFinder::findCharacterPositions(text, character);
+
+    if (positions.size() == 1 && positions[0] == -1) {
+        std::cout << "Символ '" << character << "' не найден в тексте." << std::endl;
+    } else {
+        std::cout << "Символ '" << character << "' найден на позициях: ";
+        for (int pos : positions) {
+            std::cout << pos << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    return 0;
+}
