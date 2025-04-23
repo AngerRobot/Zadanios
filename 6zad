@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+#include <set>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+class LetterExtractor {
+public:
+    static vector<char> extractUniqueLetters(const std::string& text) {
+        set<char> uniqueLetters;
+
+        for (char ch : text) {
+            // Проверяем, является ли символ буквой
+            if (isalpha(ch)) {
+                uniqueLetters.insert(tolower(ch)); // Приводим к нижнему регистру
+            }
+        }
+
+        vector<char> result(uniqueLetters.begin(), uniqueLetters.end());
+        sort(result.begin(), result.end());
+
+        return result;
+    }
+};
+
+int main() {
+    string text;
+
+    cout << "Введите текст: ";
+    getline(std::cin, text);
+
+    vector<char> uniqueLetters = LetterExtractor::extractUniqueLetters(text);
+
+    cout << "Уникальные буквы в тексте (в алфавитном порядке): ";
+    for (char letter : uniqueLetters) {
+        cout << letter << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
